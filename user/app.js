@@ -1,7 +1,8 @@
 const dotenv = require('dotenv');
+const path = require('path');
 const connectDB = require('./db/db');
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 connectDB();
-dotenv.config();
 const express = require('express');
 const app = express();
 app.use(express.json());
