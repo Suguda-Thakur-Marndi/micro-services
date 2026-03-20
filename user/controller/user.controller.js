@@ -46,11 +46,21 @@ module.exports.login = async (req, res) => {
 
 module.exports.logout = async (req, res) => {
     try {
-        const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+        const authHeader = req.headers.authorization;
+        const bearerToken = authHeader && authHeader.startsWith('Bearer ')
+            ? authHeader.split(' ')[1]
+            : null;
+        const token = req.cookies.token || bearerToken;
         if (!token) {
             return res.status(400).json({ message: "No token provided" });
         }
-        await BlacklistToken.create({ token });
+
+        await BlacklistToken.findOneAndUpdate(
+            { token },
+            { token, createdAt: new Date() },
+            { upsert: true, new: true, setDefaultsOnInsert: true }
+        );
+
         res.clearCookie('token');
         res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
