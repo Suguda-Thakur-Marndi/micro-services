@@ -32,3 +32,4 @@ const authenticate = async (req, res, next) => {
 
 module.exports.authenticate = authenticate;
 module.exports.CatainAuth = authenticate;
+module.exports.CaptainAuth = authenticate;

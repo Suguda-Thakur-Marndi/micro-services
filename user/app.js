@@ -9,5 +9,15 @@ app.use(express.json());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 const userRoutes = require('./routes/user.routes');
+
+app.get('/', (req, res) => {
+	res.status(200).json({ service: 'user', status: 'ok' });
+});
+
 app.use('/users', userRoutes);
+
+app.use((req, res) => {
+	res.status(404).json({ message: 'Route not found' });
+});
+
 module.exports = app;

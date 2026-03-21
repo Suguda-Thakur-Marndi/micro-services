@@ -1,0 +1,9 @@
+{
+  "name": "micro-services-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx concurrently -n user,captain,ride,gateway -c green,blue,magenta,yellow \"npm run dev --prefix user\" \"npm run dev --prefix Captain\" \"npm run dev --prefix ride\" \"npm run dev --prefix gateway\"",
+    "start": "npx concurrently -n user,captain,ride,gateway -c green,blue,magenta,yellow \"npm run start --prefix user\" \"npm run start --prefix Captain\" \"npm run start --prefix ride\" \"npm run start --prefix gateway\""
+  }
+}

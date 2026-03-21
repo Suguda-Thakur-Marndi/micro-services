@@ -6,6 +6,14 @@ const jwt = require('jsonwebtoken');
 module.exports.register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        if (!name || !email || !password) {
+            return res.status(400).json({ message: "name, email and password are required" });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ message: "password must be at least 6 characters" });
+        }
+
         const user = await userModel.findOne({ email });
         if (user) {
             return res.status(400).json({ message: "User already exists" });
@@ -28,6 +36,10 @@ module.exports.register = async (req, res) => {
 module.exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).json({ message: "email and password are required" });
+        }
+
         const user = await userModel.findOne({ email });
         if (!user) {
             return res.status(400).json({ message: "Invalid credentials" });
@@ -88,6 +100,10 @@ module.exports.updateProfile = async (req, res) => {
         if (email !== undefined) updateData.email = email;
         if (isAvailble !== undefined) updateData.isAvailble = isAvailble;
         if (isAvailable !== undefined) updateData.isAvailble = isAvailable;
+
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ message: "No valid fields provided for update" });
+        }
 
         const captain = await userModel.findByIdAndUpdate(
             req.user.id,

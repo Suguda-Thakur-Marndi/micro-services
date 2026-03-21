@@ -2,6 +2,8 @@ const http = require('http');
 const app = require('./app');
 const server = http.createServer(app);
 
-server.listen(3002, () => {
-  console.log('Captain service is running on port 3002');
+const PORT = process.env.CAPTAIN_PORT || 3002;
+
+server.listen(PORT, () => {
+  console.log(`Captain service is running on port ${PORT}`);
 });
