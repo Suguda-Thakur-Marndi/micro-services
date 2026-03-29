@@ -94,12 +94,12 @@ module.exports.getProfile = async (req, res) => {
 module.exports.updateProfile = async (req, res) => {
     try {
         const { name, email, isAvailble, isAvailable } = req.body;
+        const resolvedAvailability = isAvailable !== undefined ? isAvailable : isAvailble;
 
         const updateData = {};
         if (name !== undefined) updateData.name = name;
         if (email !== undefined) updateData.email = email;
-        if (isAvailble !== undefined) updateData.isAvailble = isAvailble;
-        if (isAvailable !== undefined) updateData.isAvailble = isAvailable;
+        if (resolvedAvailability !== undefined) updateData.isAvailble = resolvedAvailability;
 
         if (Object.keys(updateData).length === 0) {
             return res.status(400).json({ message: "No valid fields provided for update" });

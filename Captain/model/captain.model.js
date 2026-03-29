@@ -13,9 +13,10 @@ const captainSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  isAvailble:{
-    type:Boolean,
-    default:false
+  isAvailble: {
+    type: Boolean,
+    default: false,
+    alias: 'isAvailable'
   }
 });
 const captainModel = mongoose.model('Captain', captainSchema);

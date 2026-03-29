@@ -4,7 +4,7 @@ const express = require('express');
 const connectDB = require('./db/db');
 const rideRoutes = require('./routes/ride.routes');
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 connectDB();
 
 const app = express();

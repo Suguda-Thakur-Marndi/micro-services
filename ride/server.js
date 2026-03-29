@@ -2,7 +2,7 @@ const http = require('http');
 const app = require('./app');
 const { connectRabbitMQ, closeRabbitMQ } = require('./rabbit');
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.RIDE_PORT || process.env.PORT || 3003;
 const server = http.createServer(app);
 
 server.listen(PORT, () => {

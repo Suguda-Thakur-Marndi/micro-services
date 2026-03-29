@@ -4,7 +4,7 @@ let connection;
 let channel;
 
 async function connectRabbitMQ() {
-	const rabbitUrl = process.env.RABBIT_URL || process.env.Rbbit_url;
+	const rabbitUrl = process.env.RABBIT_URL || process.env.RABBITMQ_URL || process.env.Rbbit_url;
 
 	if (!rabbitUrl) {
 		console.log('RABBIT_URL is not set. RabbitMQ is disabled.');
