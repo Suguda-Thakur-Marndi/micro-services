@@ -1,2 +1,7 @@
+# Environment secrets
 .env
-6
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
