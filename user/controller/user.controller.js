@@ -3,7 +3,7 @@ const BlacklistToken = require('../model/blacklistToken');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-module.exports.register = async (req, res) => {
+module.exports.register =  async (req, res) => {
     try {
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
